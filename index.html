@@ -128,7 +128,7 @@
               <h3 style="color:black; padding:20px">¿Cómo se llamaría el siguiente asteroide?</h3>
               <div id="respuestas"></div><br>
               <input type="button" value="Comprobar" onclick="comprobar()"><p><br><br></p>
-                <span id="SpanID">Texto</span>><br><br>
+                <span id="ia" style="color: black;"></span><br><br>
               </div>
             </div>
           </center>
@@ -137,13 +137,13 @@
           <script> 
             var respuesta_correcta;
             
-            var imagenes = ["img/Ceres.jpg", "img/2001 CP44.jpg", "img/1468 Zomba (1938 PA).jpg", "img/2020 UX3.jpg"];
-            var respuestas = [["MBA", "TNO", "Centauro", "Troyano", "NEA"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"], ["MBA", "TNO", "Centauro", "Troyano", "NEA"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"]];
+            var nombres = ["Fue el primer asteroide en ser descubierto en 1950, entre el 16 y el 29 de febrero.",
+             "img/2001 CP44.jpg", "img/1468 Zomba (1938 PA).jpg", "img/2020 UX3.jpg"];
+            var respuestas = [["1950 DA", "1950 AD", "1950 CA", "DA 1950"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"], ["MBA", "TNO", "Centauro", "Troyano", "NEA"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"]];
             
             function cambiar() {
               var al = Math.floor(Math.random() * imagenes.length);
               var respuestas_posibles = respuestas[al];
-              dato_interesante = datos[al];
               var tengo_la_respuesta = false;
               var posiciones = [0, 1, 2, 3, 4];
               var respuestas_reordenadas = [];
@@ -157,7 +157,7 @@
                 posiciones.splice(posicion_al, 1);
               }
 
-              document.getElementById("ia").src = imagenes[al];
+              document.getElementById("ia").textContent = nombres[al];
 
               var txt_respuestas = "";
               for (i in respuestas_reordenadas) {
