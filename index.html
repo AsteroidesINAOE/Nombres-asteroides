@@ -136,60 +136,62 @@
             <input type="button" value="Comprobar" onclick="comprobar()">
             <br><br>
           </div>
-    </div>
-    </center>
-    <br><br>
 
-    <script>
-      var respuesta_correcta;
+        </center>
+        <br><br>
 
-      var nombres = ["Fue el primer asteroide en ser descubierto entre el 16 y el 29 de febrero de 1950.",
-        "img/2001 CP44.jpg", "img/1468 Zomba (1938 PA).jpg", "img/2020 UX3.jpg"];
-      var respuestas = [["1950 DA", "1950 AD", "1950 CA", "DA 1950"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"], ["MBA", "TNO", "Centauro", "Troyano", "NEA"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"]];
+        <script>
+          var respuesta_correcta;
 
-      function cambiar() {
-        var al = Math.floor(Math.random() * nombres.length);
-        var respuestas_posibles = respuestas[al];
-        var tengo_la_respuesta = false;
-        var posiciones = [0, 1, 2, 3];
-        var respuestas_reordenadas = [];
-        for (i in respuestas_posibles) {
-          var posicion_al = Math.floor(Math.random() * posiciones.length);
-          if (posicion_al == 0 && tengo_la_respuesta == false) {
-            respuesta_correcta = i;
-            tengo_la_respuesta = true;
+          var nombres = ["Fue el primer asteroide en ser descubierto entre el 16 y el 29 de febrero de 1950.",
+            "img/2001 CP44.jpg", "img/1468 Zomba (1938 PA).jpg", "img/2020 UX3.jpg"];
+          var respuestas = [["1950 DA", "1950 AD", "1950 CA", "DA 1950"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"], ["MBA", "TNO", "Centauro", "Troyano", "NEA"], ["NEA", "TNO", "Centauro", "Troyano", "MBA"]];
+
+          function cambiar() {
+            var al = Math.floor(Math.random() * nombres.length);
+            var respuestas_posibles = respuestas[al];
+            var tengo_la_respuesta = false;
+            var posiciones = [0, 1, 2, 3];
+            var respuestas_reordenadas = [];
+            for (i in respuestas_posibles) {
+              var posicion_al = Math.floor(Math.random() * posiciones.length);
+              if (posicion_al == 0 && tengo_la_respuesta == false) {
+                respuesta_correcta = i;
+                tengo_la_respuesta = true;
+              }
+              respuestas_reordenadas[i] = respuestas_posibles[posiciones[posicion_al]];
+              posiciones.splice(posicion_al, 1);
+            }
+
+            document.getElementById("ia").textContent = nombres[al];
+
+            var txt_respuestas = "";
+            for (i in respuestas_reordenadas) {
+              txt_respuestas += '<input type="radio" name="cuestionario" value="' + i + '"><label>' + respuestas_reordenadas[i] + '</label><br>';
+            }
+            document.getElementById("respuestas").innerHTML = txt_respuestas;
           }
-          respuestas_reordenadas[i] = respuestas_posibles[posiciones[posicion_al]];
-          posiciones.splice(posicion_al, 1);
-        }
 
-        document.getElementById("ia").textContent = nombres[al];
+          function comprobar() {
+            var respuesta = $("input[type=radio]:checked").val()
+            if (respuesta == respuesta_correcta) {
+              alert('Respuesta correcta.');
+            } else {
+              alert("Inténtalo de nuevo");
+            }
+          }
 
-        var txt_respuestas = "";
-        for (i in respuestas_reordenadas) {
-          txt_respuestas += '<input type="radio" name="cuestionario" value="' + i + '"><label>' + respuestas_reordenadas[i] + '</label><br>';
-        }
-        document.getElementById("respuestas").innerHTML = txt_respuestas;
-      }
+        </script>
 
-      function comprobar() {
-        var respuesta = $("input[type=radio]:checked").val()
-        if (respuesta == respuesta_correcta) {
-          alert('Respuesta correcta.');
-        } else {
-          alert("Inténtalo de nuevo");
-        }
-      }
+        <p>
+          Si desea saber más acerca de estos asteroides, puede buscarlos en la siguiente base de datos, donde podrá
+          encontrar otros nombres para
+          el mismo asteroide: <a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/">Base de datos JPL
+            NASA</a>.<br><br>
+        </p>
 
-    </script>
-
-    <p>
-      Si desea saber más acerca de estos asteroides, puede buscarlos en la siguiente base de datos, donde podrá encontrar otros nombres para 
-      el mismo asteroide: <a href="https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/">Base de datos JPL NASA</a>.<br><br>
-    </p>
-
-    </font>
-  </div>
+      </font>
+    </div>
   </div>
   </div>
 
